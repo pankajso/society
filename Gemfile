@@ -7,7 +7,8 @@ gem 'rails', '3.2.7'
 
 gem 'mysql2', '0.3.11'
 gem 'haml', '~> 3.1.6'
-
+gem 'hpricot', '~> 0.8.6'
+gem 'ruby_parser'
 #add user login functionality usinf devise 
 
 # Gems used only for assets and not required
