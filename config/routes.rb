@@ -1,4 +1,6 @@
 Societymaintainence::Application.routes.draw do
+  get "home/index"
+
   resources :members
 
   # The priority is based upon order of creation:
