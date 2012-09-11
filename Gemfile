@@ -9,6 +9,7 @@ gem 'mysql2', '0.3.11'
 gem 'haml', '~> 3.1.6'
 gem 'hpricot', '~> 0.8.6'
 gem 'ruby_parser'
+gem 'simple_form', '~> 2.0.2'
 #add user login functionality usinf devise 
 
 # Gems used only for assets and not required
