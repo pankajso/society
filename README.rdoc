@@ -1,3 +1,11 @@
 == Society simple Accounting 
 
 This app generates the monthly due's for all the society members based on the rules defined.
+
+== Licence
+
+MIT License
+
+This software is provided as is, use it your own risk.
+
+Copyright (c) 2013 Pankaj Sonawane
