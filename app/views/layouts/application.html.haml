@@ -1,9 +1,63 @@
 !!!
 %html
+
   %head
-    %title Atharva Residency
-    = stylesheet_link_tag    "application"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
+    %link{ :rel => "shortcut icon", :href => "assets/atharva.png", :type => "image/x-icon"}/
+    %title
+      Atharva Residency
+      = yield(:title) || "Untitled"
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Muli:300"
+    = stylesheet_link_tag "validationEngine.jquery"
+    = javascript_include_tag "application", controller_name, "bootstrap-modal"
+    = csrf_meta_tag
+    = yield(:head)
+
   %body
-    = yield
+    .container-fluid.status
+      .row-fluid
+        .span5
+          %a{:href => "/"}
+            %img{:src => "assets/atharvaresidency.png"}/
+        .span7
+          -if user_signed_in?
+            %ul.nav{:style=>'margin-bottom:0;'}
+              %li= link_to "Members", members_path
+              %li= link_to "Rule", members_path
+              %li= link_to "Reports", members_path
+              %li= link_to 'Admin', members_path
+              %li= link_to 'Support', members_path
+
+      .row-fluid
+        .span12
+          .div-table
+            -if user_signed_in?
+              .status-bar
+                %span.pull-left
+                  Signed in as
+                  = current_user.name
+                  &nbsp;|&nbsp;
+                  = link_to "Sign out", destroy_user_session_path, :method => :delete
+            %br/
+
+      .row-fluid
+        = yield
+      %div{:id => 'modal-window', :class => "modal hide fade", :style => "display:none;margin-top:0;box-shadow:0 0 50px rgba(255,0,0,0.35);"}
+        .modal-header
+          .centered
+            <img src="/assets/horizontal-loader.gif">
+            %hr.no-margin/
+            %h4
+              Please wait. Loading... 
+      = form_tag('', :id => 'get_month_form', :style => "display:none") do
+        = hidden_field_tag 'month'
+    .container-fluid
+      %footer
+        %hr.no-margin/
+        %p.pull-left
+          =link_to "Privacy Policy", members_path
+        %p.pull-right
+          &copy; 2012 Cube Root Software
+
+
