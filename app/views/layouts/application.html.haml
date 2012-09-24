@@ -20,38 +20,29 @@
         .span5
           %a{:href => "/"}
             %img{:src => "assets/atharvaresidency.png"}/
+          
         .span7
           -if user_signed_in?
-            %ul.nav{:style=>'margin-bottom:0;'}
+            .status-bar
+              %span.pull-right
+                Signed in as
+                = current_user.name
+          %ul.nav{:style=>'margin-bottom:0;'}
+            -if user_signed_in?
               %li= link_to "Members", members_path
               %li= link_to "Rule", members_path
               %li= link_to "Reports", members_path
               %li= link_to 'Admin', members_path
               %li= link_to 'Support', members_path
+            %li= link_to "Sign out", destroy_user_session_path, :method => :delete
+
+          %br/
 
       .row-fluid
-        .span12
-          .div-table
-            -if user_signed_in?
-              .status-bar
-                %span.pull-left
-                  Signed in as
-                  = current_user.name
-                  &nbsp;|&nbsp;
-                  = link_to "Sign out", destroy_user_session_path, :method => :delete
-            %br/
-
-      .row-fluid
+        .centered
+          %hr.no-margin/
         = yield
-      %div{:id => 'modal-window', :class => "modal hide fade", :style => "display:none;margin-top:0;box-shadow:0 0 50px rgba(255,0,0,0.35);"}
-        .modal-header
-          .centered
-            <img src="/assets/horizontal-loader.gif">
-            %hr.no-margin/
-            %h4
-              Please wait. Loading... 
-      = form_tag('', :id => 'get_month_form', :style => "display:none") do
-        = hidden_field_tag 'month'
+        
     .container-fluid
       %footer
         %hr.no-margin/
