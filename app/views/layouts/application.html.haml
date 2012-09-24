@@ -28,14 +28,14 @@
                 Signed in as
                 = current_user.name
           %ul.nav{:style=>'margin-bottom:0;'}
+            %li= link_to "Notice", members_path, :method => :delete
             -if user_signed_in?
               %li= link_to "Members", members_path
               %li= link_to "Rule", members_path
               %li= link_to "Reports", members_path
               %li= link_to 'Admin', members_path
               %li= link_to 'Support', members_path
-            %li= link_to "Sign out", destroy_user_session_path, :method => :delete
-
+              %li= link_to "Sign out", destroy_user_session_path, :method => :delete
           %br/
 
       .row-fluid
