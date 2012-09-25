@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  month: 2012-09-25
+  position: MyString
+
+two:
+  month: 2012-09-25
+  position: MyString
