@@ -1,1 +1,46 @@
-<h1>Dash Board</h1>
+- content_for :title do
+  Welcome to Atharva Residency 
+
+.row-fluid
+  .span3
+    .well
+      %h4 Monthly Report
+      %hr.no-margin/
+      %h4 View Current Month
+      = link_to "View Current Month Report", new_member_path
+      =" / "
+      = link_to "View Last Month Report", new_member_path
+    - if user_signed_in?   
+      .span3
+        .well
+          %h4 Quick links
+          %hr.no-margin/
+          %h4 Members
+          = link_to "Add new member", new_member_path
+          =" / "
+          = link_to "Edit member", members_path
+          - if user_signed_in?
+            =" / "
+            = link_to "Add new member", new_member_path
+            =" / "
+            = link_to "Edit member", members_path
+            %hr.no-margin/
+            %h4 Rules
+            = link_to "Set New Rule", members_path
+            =" / "
+            = link_to "Edit Rule", members_path
+            %hr.no-margin/
+            %h4 Notice
+            = link_to "Add New Notice", members_path
+            =" / "
+            = link_to "Edit Notice", members_path
+            %hr.no-margin/
+            %h4 Maintainence Report
+            = link_to "Generate New", members_path
+            =" / "
+            = link_to "Edit Maintainence Report", members_path
+  .span9
+    .well.month_report
+      %h4 Current months dues
+      %hr.no-margin/
+        
