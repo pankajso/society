@@ -1,5 +1,5 @@
 require 'state_machine'
-class MonthwiseStatus < ActiveRecord::Base
+class MonthwisePosition < ActiveRecord::Base
   attr_accessible :month, :position
   state_machine :position, :initial => :idle do
     event :generate do 
@@ -15,7 +15,7 @@ class MonthwiseStatus < ActiveRecord::Base
     
     #Update the postion of the month
     def self.update_position(month, position)
-      @month_position = MonthwiseStatus.find(:all, :conditions => ["month = ?", month]).first
+      @month_position = MonthwisePosition.find(:all, :conditions => ["month = ?", month]).first
       if @month_position.position.blank?
         @month_position.update_attribute(position, 'idle')
         @month_position.save
