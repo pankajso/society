@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925112737) do
+ActiveRecord::Schema.define(:version => 20120926122942) do
 
   create_table "members", :force => true do |t|
     t.string   "refnum"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20120925112737) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "monthwise_statuses", :force => true do |t|
+  create_table "monthwise_position", :force => true do |t|
     t.date     "month"
     t.string   "position"
     t.datetime "created_at", :null => false
