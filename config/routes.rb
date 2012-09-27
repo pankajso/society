@@ -1,4 +1,7 @@
 Societymaintainence::Application.routes.draw do
+
+  resources :rules
+
   authenticated :user do
     root :to => 'home#index'
   end
