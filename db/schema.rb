@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926122942) do
+ActiveRecord::Schema.define(:version => 20120927074614) do
 
   create_table "members", :force => true do |t|
     t.string   "refnum"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(:version => 20120926122942) do
   create_table "monthwise_position", :force => true do |t|
     t.date     "month"
     t.string   "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "rules", :force => true do |t|
+    t.string   "rulename"
+    t.float    "amount"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
