@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  refnum: MyString
+  name: MyString
+  month: 2012-09-28
+  comment: MyString
+  total_due: 1.5
+
+two:
+  refnum: MyString
+  name: MyString
+  month: 2012-09-28
+  comment: MyString
+  total_due: 1.5
