@@ -43,4 +43,20 @@
     .well.month_report
       %h4 Current months dues
       %hr.no-margin/
+      %table.table
+        %tr
+          %th Fl No
+          %th Name
+          %th Total Due
+          %th Comment
+          %th
+          %th
+          %th
+        - @monthly.each do |owner|
+          %tr
+            %td= owner.refnum
+            %td= owner.name
+            %td= owner.total_due.present? ? '%.2f'% owner.total_due : owner.total_due
+            %td= owner.comment
+      %br/
         
