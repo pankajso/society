@@ -23,6 +23,9 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.2.1'
+gem 'state_machine', '1.1.0'
+gem "aasm", "~> 3.0.9"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

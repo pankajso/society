@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    @monthly = MonthlyMaintainence.all
+    @monthly = MonthlyMaintainence.get_monthly_maintainence()
 
     respond_to do |format|
       format.html # index.html.erb
@@ -9,3 +9,4 @@ class HomeController < ApplicationController
     end
   end
 end
+
