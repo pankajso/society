@@ -45,8 +45,18 @@ class MonthwisePosition < ActiveRecord::Base
         end
       end
     rescue Exception => e
-
+      #Add msg in log take some action
     end
+    month.month
+  end
 
+  def self.get_curret_maintainence
+    months = MonthwisePosition.draft
+    if months.empty? then
+      months = MonthwisePosition.approved
+    end
+    for month in months 
+      return month.month
+    end
   end
 end
