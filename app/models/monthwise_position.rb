@@ -2,39 +2,51 @@ class MonthwisePosition < ActiveRecord::Base
   include AASM
   attr_accessible :month, :position
 
-  aasm :column => 'position' do
-    state :generated, :initial => true
-    state :approved
-    state :reviewed
-    state :closed
+  # state machine
+  aasm_column :position
 
-    event :close do
-      transitions :from => :approved, :to => :closed
-    end
+  aasm_initial_state :generated
 
-    event :review do
-      transitions :from => :approved, :to => :reviewd
-    end
-
-    event :approve do
-      transitions :from => [:reviewd, :generated], :to => :approved
-    end
+  aasm_state :generated
+  aasm_state :draft
+  aasm_state :approved
+  aasm_state :reviewing
+  aasm_state :closed
+  
+  aasm_event :draft do 
+    transitions :to => :draft, :from => [:generated]
   end
 
-  
-  #Update the position of the month
-  def self.update_position(month, position)
-    @month_position = MonthwisePosition.find(:all, :conditions => ["month = ?", month]).first
-    if @month_position.position.blank?
-      @month_position.update_attribute(position, 'generated')
-      @month_position.save
+  aasm_event :approved do
+    transitions :to => :approve, :from => [:draft, :reviewing]
+  end
+
+  aasm_event :reviewing do
+    transitions :to => :reviewing, :from => [:generate, :approve]
+  end
+
+  aasm_event :closed do
+    transitions :to => :close, :from => [:approve]
+  end
+
+  def editable?
+    closed? 
+  end
+
+  def self.check_monthwise_position()
+    generated = MonthwisePosition.generated
+    return if generated.empty?
+    #ideally this should be always 1 generated.count
+    begin
+      for month in generated
+        retval = MonthlyMaintainence.generate_maintainence(month.month)
+        if retval then
+          month.draft!
+        end
+      end
+    rescue Exception => e
+
     end
-    if position == 'generated'
-      @month_position.generated!
-    elsif position == 'approved'
-      @month_position.approved!
-    elsif position == 'close'
-      @month_position.close!
-    end
+
   end
 end
