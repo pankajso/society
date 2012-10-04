@@ -3,13 +3,11 @@ class MonthlyMaintainence < ActiveRecord::Base
 
   def self.generate_maintainence(for_month)
     retval = self.calculate_maintainence(for_month)
-    binding.pry
     return retval
   end
 
   def self.calculate_maintainence(for_month)
     prev_maintainence = MonthlyMaintainence.find(:all, :conditions => ["month = ?", for_month - 1.month])
-    #binding.pry
     retval = false
     return if prev_maintainence.empty?
     members = Member.all
@@ -26,13 +24,11 @@ class MonthlyMaintainence < ActiveRecord::Base
           record.save!  
           retval = true
         rescue Exception => e
-          binding.pry
           retval = fales
           #log the exception
         end
       end
     end
-    binding.pry
     return retval #TODO Remove this add proper condition for this.
   end
 

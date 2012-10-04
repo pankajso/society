@@ -40,7 +40,6 @@ class MonthwisePosition < ActiveRecord::Base
     begin
       for month in generated
         retval = MonthlyMaintainence.generate_maintainence(month.month)
-        binding.pry
         if retval then
           month.draft!
         end
