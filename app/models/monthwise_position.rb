@@ -33,13 +33,14 @@ class MonthwisePosition < ActiveRecord::Base
     closed? 
   end
 
-  def self.check_monthwise_position()
+  def self.check_monthwise_position
     generated = MonthwisePosition.generated
     return if generated.empty?
     #ideally this should be always 1 generated.count
     begin
       for month in generated
         retval = MonthlyMaintainence.generate_maintainence(month.month)
+        binding.pry
         if retval then
           month.draft!
         end
