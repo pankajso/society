@@ -1,7 +1,6 @@
 class MonthlyMaintainence < ActiveRecord::Base
   attr_accessible :comment, :month, :name, :refnum, :total_due
-  has_one :MonthwisePosition
-  
+
   def self.generate_maintainence(for_month)
     retval = self.calculate_maintainence(for_month)
     return retval
@@ -40,4 +39,5 @@ class MonthlyMaintainence < ActiveRecord::Base
   def self.get_monthly_maintainence(for_month)
     maintainence = MonthlyMaintainence.find(:all, :conditions => ["month = ?", for_month])
   end
+
 end

@@ -6,6 +6,7 @@ class HomeController < ApplicationController
     month = MonthwisePosition.check_monthwise_position
     month = MonthwisePosition.get_curret_maintainence
     @monthly = MonthlyMaintainence.get_monthly_maintainence(month)
+    @monthposition = MonthwisePosition.get_month_position(month)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @members }

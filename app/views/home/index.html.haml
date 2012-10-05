@@ -65,13 +65,16 @@
       .well.info_section
         %h4 Process Draft Maintenance 
         %hr.no-margin/
-        - if @monthly.MonthlyPosition.draft?
-          %h4 View Current Month
-          = link_to "View Current Month Report", new_member_path
+        - if @monthposition.draft?
+          %h4 This is Draft 
+          = link_to "Approve the current month", new_member_path
           =" / "
-          = link_to "View Last Month Report", new_member_path
-        - if @monthly.MonthlyPosition.approved?
+          = link_to "Review the current month", new_member_path
+        - if @monthposition.approved?
           %h4 Review the months maintenance 
           = link_to "Review Current Month", new_member_path
           = link_to "Close the Current Month", new_meber_path
           = link_to "Generate new month", new_member_path
+        - if @monthposition.reviewing?
+          %h4 Reviewing the months maintenance 
+          = link_to "Approve the current month", new_member_path

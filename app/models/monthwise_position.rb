@@ -59,4 +59,9 @@ class MonthwisePosition < ActiveRecord::Base
       return month.month
     end
   end
+
+  #This will tell the months position as of now
+  def self.get_month_position(for_month)
+    monthposition = MonthwisePosition.find(:all, :conditions =>["month = ?", for_month]).first
+  end
 end
